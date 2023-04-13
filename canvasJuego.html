@@ -1,0 +1,65 @@
+<canvas width="600" height="400"> </canvas>
+
+<script>
+
+    var pantalla = document.querySelector("canvas");
+    var pincel = pantalla.getContext("2d");
+
+    pincel.fillStyle = "lightgrey";
+    pincel.fillRect(0, 0, 600, 400);
+
+    var radio = 10;
+    var xAleartorio;
+    var yAleartorio;
+    function dibujarcirculo(x, y, radio, color) {
+        pincel.fillStyle = color;
+        pincel.beginPath();
+        pincel.arc(x, y, radio, 0, 2 * Math.PI);
+        pincel.fill();
+    }
+
+    function lipiarPantalla() {
+        pincel.clearRect(0, 0, 600, 400);
+    }
+
+    var o = 0;
+
+    function actualizarPantalla() {
+        lipiarPantalla();
+        xAleartorio = aleartoria(600);
+        yAleartorio = aleartoria(400);
+
+        objetivo(xAleartorio, yAleartorio);
+        o++;
+    }
+
+    function objetivo(v, z) {
+        dibujarcirculo(v, z, radio + 20, "lightgreen");
+        dibujarcirculo(v, z, radio + 10, "blue");
+        dibujarcirculo(v, z, radio, "green");
+    }
+
+    function aleartoria(maximo) {
+        return Math.floor(Math.random() * maximo);
+    }
+
+    setInterval(actualizarPantalla, 1000);
+
+    function dispararPantalla(evento) {
+        var x = evento.pageX - pantalla.offsetLeft;
+        var y = evento.pageY - pantalla.offsetTop;
+
+        if ((x < xAleartorio + radio) &&
+            (x > xAleartorio - radio) &&
+            (y < yAleartorio + radio) &&
+            (y > yAleartorio - radio)) {
+            alert("Tiro al blanco");
+        }
+
+    }
+
+    pantalla.onclick = dispararPantalla;
+
+
+
+</script>
