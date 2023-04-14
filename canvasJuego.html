@@ -1,7 +1,16 @@
 <canvas width="600" height="400"> </canvas>
+<br><br>
+<div>
+    Nivel
+    <input type="text" id="nivel">
 
+    Puntos
+    <input type="text" id="puntos">
+    <br> <br>
+    <textarea id="texto" cols="50" rows="5"></textarea>
+
+</div>
 <script>
-
     var pantalla = document.querySelector("canvas");
     var pincel = pantalla.getContext("2d");
 
@@ -11,6 +20,8 @@
     var radio = 10;
     var xAleartorio;
     var yAleartorio;
+    var puntos = 0;
+
     function dibujarcirculo(x, y, radio, color) {
         pincel.fillStyle = color;
         pincel.beginPath();
@@ -43,23 +54,66 @@
         return Math.floor(Math.random() * maximo);
     }
 
-    setInterval(actualizarPantalla, 1000);
+    var velocidad = 2000;
+    document.getElementById("nivel").value = 1;
+    texto.value = "BIENVENIDO.. PONGAMOS APRUEVATU BUENA PUNTERIA....  ACEPTAS EL RETO????";
+    document.getElementById("puntos").value = puntos;
 
-    function dispararPantalla(evento) {
-        var x = evento.pageX - pantalla.offsetLeft;
-        var y = evento.pageY - pantalla.offsetTop;
 
-        if ((x < xAleartorio + radio) &&
-            (x > xAleartorio - radio) &&
-            (y < yAleartorio + radio) &&
-            (y > yAleartorio - radio)) {
-            alert("Tiro al blanco");
+    do {
+        setInterval(actualizarPantalla, velocidad);
+
+        function nivel() {
+            if (puntos == 5) {
+                velocidad = velocidad - 50;
+                texto.value = "En hora buena, has subido de nivel";
+                document.getElementById("nivel").value = 2;
+            } else if (puntos == 10) {
+                velocidad = velocidad - 50;
+                document.getElementById("nivel").value = 3;
+            } else if (puntos == 15) {
+                velocidad = velocidad - 100;
+                document.getElementById("nivel").value = 4;
+            } else if (puntos == 20) {
+                velocidad = velocidad - 150;
+                document.getElementById("nivel").value = 5;
+            } else if (puntos == 30) {
+                velocidad = velocidad - 150;
+                document.getElementById("nivel").value = 6;
+            } else if (puntos == 40) {
+                velocidad = velocidad - 150;
+                document.getElementById("nivel").value = 7;
+            }
         }
 
-    }
-
-    pantalla.onclick = dispararPantalla;
 
 
+        function dispararPantalla(evento) {
+            var x = evento.pageX - pantalla.offsetLeft;
+            var y = evento.pageY - pantalla.offsetTop;
+
+            if ((x < xAleartorio + radio) &&
+                (x > xAleartorio - radio) &&
+                (y < yAleartorio + radio) &&
+                (y > yAleartorio - radio)) {
+
+                puntos++;
+                document.getElementById("puntos").value = puntos;
+                nivel();
+                texto.value = "Has acertado!!";
+            }
+
+        }
+
+        
+            setInterval(function () { texto.value = "2 seconds" }, 3000);
+            setInterval(function () { texto.value = "4 seconds" }, 6000);
+            setInterval(function () { texto.value = "6 seconds" }, 9000);
+        
+
+
+        pantalla.onclick = dispararPantalla;
+
+    } while (puntos == 50);
 
 </script>
