@@ -1,13 +1,19 @@
+<style type="text/css">
+    .sinborder {
+        border: 0;
+    }
+</style>
+
 <canvas width="600" height="400"> </canvas>
 <br><br>
 <div>
     Nivel
-    <input type="text" id="nivel">
+    <input type="text" id="nivel" disabled class="sinborder">
 
     Puntos
-    <input type="text" id="puntos">
+    <input type="text" id="puntos" disabled class="sinborder">
     <br> <br>
-    <textarea id="texto" cols="50" rows="5"></textarea>
+    <textarea id="texto" cols="50" rows="3" disabled class="sinborder"></textarea>
 
 </div>
 <script>
@@ -56,64 +62,86 @@
 
     var velocidad = 2000;
     document.getElementById("nivel").value = 1;
-    texto.value = "BIENVENIDO.. PONGAMOS APRUEVATU BUENA PUNTERIA....  ACEPTAS EL RETO????";
     document.getElementById("puntos").value = puntos;
+    texto.value = "BIENVENIDO.....";
+
+    setInterval(actualizarPantalla, velocidad);
+
+    function nivel() {
+        if (puntos == 3) {
+            velocidad -= 50;
+            setTimeout(function () { texto.value = "EN HORA BUENA, HAS SUBIDO DE NIVEL!!!!" }, 500);
+            document.getElementById("nivel").value = 2;
+            setInterval(actualizarPantalla, velocidad);
+
+        } else if (puntos == 5) {
+            velocidad -= 5;
+            setInterval(actualizarPantalla, velocidad);
+            setTimeout(function () { texto.value = "EN HORA BUENA, HAS SUBIDO DE NIVEL!!!!" }, 500);
+            document.getElementById("nivel").value = 3;
+        } else if (puntos == 15) {
+            velocidad -=5;
+            setInterval(actualizarPantalla, velocidad);
+            setTimeout(function () { texto.value = "EN HORA BUENA, HAS SUBIDO DE NIVEL!!!!" }, 500);
+            document.getElementById("nivel").value = 4;
+        } else if (puntos == 20) {
+            velocidad -=5;
+            setInterval(actualizarPantalla, velocidad);
+            setTimeout(function () { texto.value = "EN HORA BUENA, HAS SUBIDO DE NIVEL!!!!" }, 500);
+            document.getElementById("nivel").value = 5;
+        } else if (puntos == 30) {
+            velocidad -=5;
+            setInterval(actualizarPantalla, velocidad);
+            setTimeout(function () { texto.value = "EN HORA BUENA, HAS SUBIDO DE NIVEL!!!!" }, 500);
+            document.getElementById("nivel").value = 6;
+        } else if (puntos == 40) {
+            velocidad -=5;
+            setInterval(actualizarPantalla, velocidad);
+            setTimeout(function () { texto.value = "EN HORA BUENA, HAS SUBIDO DE NIVEL!!!!" }, 500);
+            document.getElementById("nivel").value = 7;
+        } else if (puntos == 50) {
+            velocidad -=5;
+            setInterval(actualizarPantalla, velocidad);
+            setTimeout(function () { texto.value = "EN HORA BUENA, HAS SUBIDO DE NIVEL!!!!" }, 500);
+            document.getElementById("nivel").value = 8;
+        } else if (puntos == 60) {
+            velocidad -=5;
+            setInterval(actualizarPantalla, velocidad);
+            setTimeout(function () { texto.value = "EN HORA BUENA, HAS SUBIDO DE NIVEL!!!!" }, 500);
+            document.getElementById("nivel").value = 9;
+        } else if (puntos == 70) {
+            velocidad -=5;
+            setInterval(actualizarPantalla, velocidad);
+            setTimeout(function () { texto.value = "EN HORA BUENA, HAS SUBIDO DE NIVEL!!!!" }, 500);
+            document.getElementById("nivel").value = 10;
+        } 
+    }
 
 
-    do {
-        setInterval(actualizarPantalla, velocidad);
 
-        function nivel() {
-            if (puntos == 5) {
-                velocidad = velocidad - 50;
-                texto.value = "En hora buena, has subido de nivel";
-                document.getElementById("nivel").value = 2;
-            } else if (puntos == 10) {
-                velocidad = velocidad - 50;
-                document.getElementById("nivel").value = 3;
-            } else if (puntos == 15) {
-                velocidad = velocidad - 100;
-                document.getElementById("nivel").value = 4;
-            } else if (puntos == 20) {
-                velocidad = velocidad - 150;
-                document.getElementById("nivel").value = 5;
-            } else if (puntos == 30) {
-                velocidad = velocidad - 150;
-                document.getElementById("nivel").value = 6;
-            } else if (puntos == 40) {
-                velocidad = velocidad - 150;
-                document.getElementById("nivel").value = 7;
-            }
+    function dispararPantalla(evento) {
+        var x = evento.pageX - pantalla.offsetLeft;
+        var y = evento.pageY - pantalla.offsetTop;
+
+        if ((x < xAleartorio + radio) &&
+            (x > xAleartorio - radio) &&
+            (y < yAleartorio + radio) &&
+            (y > yAleartorio - radio)) {
+
+            puntos++;
+            document.getElementById("puntos").value = puntos;
+            nivel();
+            texto.value = "Has acertado!!";
         }
 
+    }
 
 
-        function dispararPantalla(evento) {
-            var x = evento.pageX - pantalla.offsetLeft;
-            var y = evento.pageY - pantalla.offsetTop;
+    setInterval(function () { texto.value = "DEMUESTRA QUE TIENES UN BUEN MANEJO CON EL MOUSE.. ADELANTE!!!" }, 9000);
+    setInterval(function () { texto.value = "DEBES ESTAR PENDIENTE EN CADA NIVEL, SE VUELVE MAS DIFICL APUNTAR" }, 18000);
+    setInterval(function () { texto.value = "NO TE RINDAS!!!, SIGUE!!!, TU PUEDES!!!" }, 36000);
+    setInterval(function () { texto.value = "PONGAMOS APRUEVATU BUENA PUNTERIA....  ACEPTAS EL RETO????" }, 92000);
 
-            if ((x < xAleartorio + radio) &&
-                (x > xAleartorio - radio) &&
-                (y < yAleartorio + radio) &&
-                (y > yAleartorio - radio)) {
-
-                puntos++;
-                document.getElementById("puntos").value = puntos;
-                nivel();
-                texto.value = "Has acertado!!";
-            }
-
-        }
-
-        
-            setInterval(function () { texto.value = "2 seconds" }, 3000);
-            setInterval(function () { texto.value = "4 seconds" }, 6000);
-            setInterval(function () { texto.value = "6 seconds" }, 9000);
-        
-
-
-        pantalla.onclick = dispararPantalla;
-
-    } while (puntos == 50);
+    pantalla.onclick = dispararPantalla;
 
 </script>
