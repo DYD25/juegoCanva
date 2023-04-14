@@ -65,10 +65,10 @@
     document.getElementById("puntos").value = puntos;
     texto.value = "BIENVENIDO.....";
 
-    setInterval(actualizarPantalla, velocidad);
+    setTimeout(actualizarPantalla, velocidad);
 
     function nivel() {
-        if (puntos == 3) {
+        if (puntos == 1) {
             velocidad -= 50;
             setTimeout(function () { texto.value = "EN HORA BUENA, HAS SUBIDO DE NIVEL!!!!" }, 500);
             document.getElementById("nivel").value = 2;
@@ -79,37 +79,37 @@
             setInterval(actualizarPantalla, velocidad);
             setTimeout(function () { texto.value = "EN HORA BUENA, HAS SUBIDO DE NIVEL!!!!" }, 500);
             document.getElementById("nivel").value = 3;
-        } else if (puntos == 15) {
+        } else if (puntos == 10) {
             velocidad -=5;
             setInterval(actualizarPantalla, velocidad);
             setTimeout(function () { texto.value = "EN HORA BUENA, HAS SUBIDO DE NIVEL!!!!" }, 500);
             document.getElementById("nivel").value = 4;
-        } else if (puntos == 20) {
+        } else if (puntos == 15) {
             velocidad -=5;
             setInterval(actualizarPantalla, velocidad);
             setTimeout(function () { texto.value = "EN HORA BUENA, HAS SUBIDO DE NIVEL!!!!" }, 500);
             document.getElementById("nivel").value = 5;
-        } else if (puntos == 30) {
+        } else if (puntos == 20) {
             velocidad -=5;
             setInterval(actualizarPantalla, velocidad);
             setTimeout(function () { texto.value = "EN HORA BUENA, HAS SUBIDO DE NIVEL!!!!" }, 500);
             document.getElementById("nivel").value = 6;
-        } else if (puntos == 40) {
+        } else if (puntos == 25) {
             velocidad -=5;
             setInterval(actualizarPantalla, velocidad);
             setTimeout(function () { texto.value = "EN HORA BUENA, HAS SUBIDO DE NIVEL!!!!" }, 500);
             document.getElementById("nivel").value = 7;
-        } else if (puntos == 50) {
+        } else if (puntos == 30) {
             velocidad -=5;
             setInterval(actualizarPantalla, velocidad);
             setTimeout(function () { texto.value = "EN HORA BUENA, HAS SUBIDO DE NIVEL!!!!" }, 500);
             document.getElementById("nivel").value = 8;
-        } else if (puntos == 60) {
+        } else if (puntos == 40) {
             velocidad -=5;
             setInterval(actualizarPantalla, velocidad);
             setTimeout(function () { texto.value = "EN HORA BUENA, HAS SUBIDO DE NIVEL!!!!" }, 500);
             document.getElementById("nivel").value = 9;
-        } else if (puntos == 70) {
+        } else if (puntos == 50) {
             velocidad -=5;
             setInterval(actualizarPantalla, velocidad);
             setTimeout(function () { texto.value = "EN HORA BUENA, HAS SUBIDO DE NIVEL!!!!" }, 500);
